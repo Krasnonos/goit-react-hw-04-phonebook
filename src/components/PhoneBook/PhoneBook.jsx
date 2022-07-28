@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,20 +12,11 @@ import {
 } from '../../utils/localSrorageAction';
 
 export const PhoneBook = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => getFromLocalStoreage());
   const [filter, setFilter] = useState('');
 
-  const isFirsRender = useRef(true);
-
   useEffect(() => {
-    setContacts(getFromLocalStoreage());
-  }, []);
-
-  useEffect(() => {
-    if (!isFirsRender.current) {
-      setToLocalStorage(contacts);
-    }
-    isFirsRender.current = false;
+    setToLocalStorage(contacts);
   }, [contacts]);
 
   const submitForm = (values, { resetForm }) => {
