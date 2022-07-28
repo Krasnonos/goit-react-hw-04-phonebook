@@ -1,6 +1,6 @@
-const LS_KEY = 'saveContacts';
+const LS_KEY = 'savedContacts';
 
-const addToLoacalStorage = contacts => {
+const setToLocalStorage = contacts => {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify(contacts));
   } catch (error) {
@@ -21,12 +21,4 @@ const getFromLocalStoreage = () => {
   }
 };
 
-const removeFromLocalStorage = contacts => {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify(contacts));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export { addToLoacalStorage, getFromLocalStoreage, removeFromLocalStorage };
+export { setToLocalStorage, getFromLocalStoreage };
